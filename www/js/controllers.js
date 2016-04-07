@@ -1,4 +1,6 @@
-angular.module('starter.controllers', [])
+angular.module('app1.controllers', [
+  'ionic'
+])
 
 .controller('AppCtrl', function($scope, $ionicModal, $timeout) {
 
@@ -31,30 +33,26 @@ angular.module('starter.controllers', [])
 
   // Perform the login action when the user submits the login form
   $scope.doLogin = function() {
-    console.log('Doing login', $scope.loginData);
-
     // Simulate a login delay. Remove this and replace with your login
     // code if using a login system
     $timeout(function() {
       $scope.closeLogin();
     }, 1000);
-  }; console.log("app ctrl")
+  }
 })
 
-.controller('PlaylistsCtrl', function($scope) {
+.controller('MyStocksCtrl', function($scope) {
   $scope.playlists = [
-    { title: 'array object title property defined the second time', id: 1 },
+    { title: 'reggae', id: 1 },
     { title: 'Chill', id: 2 },
     { title: 'Dubstep', id: 3 },
     { title: 'Indie', id: 4 },
     { title: 'Rap', id: 5 },
-    { title: 'Cowbell', id: 6 },
-
-    { title: 'new dta from controller', id: 7 }
-  ];console.log("playlists ctrl");
+    { title: 'Cowbell', id: 6 }
+  ];
 })
 
-.controller('PlaylistCtrl', function($scope, $stateParams) {
-  $scope.dynamicViewTitleFromStateParam = $stateParams.id;
-console.log("playlist ctrl");
+.controller('StockCtrl', function($scope, $stateParams) {
+
+
 });
