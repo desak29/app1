@@ -1,4 +1,4 @@
-// Ionic Starter App
+
 
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
@@ -20,6 +20,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       StatusBar.styleDefault();
     }
   });
+  console.log("config app.js ctrl")
 })
 
 .config(function($stateProvider, $urlRouterProvider) {
@@ -60,7 +61,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     })
 
   .state('app.single', {
-    url: '/playlists/:playlistId',
+    url: '/playlists/:id',
     views: {
       'menuContent': {
         templateUrl: 'templates/playlist.html',
@@ -70,4 +71,5 @@ angular.module('starter', ['ionic', 'starter.controllers'])
   });
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/playlists');
+  console.log("config app.js ctrl")
 });
