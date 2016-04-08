@@ -62,26 +62,30 @@ angular.module('app1.controllers', [
 
   .controller('StockCtrl',
     ['$scope', '$stateParams', 'stockDataService',
-      function($scope, $stateParams, stockDataService) {
-
-        //http://finance.yahoo.com/webservice/v1/symbols/YHOO/quote?format=json&view=detail
-        //$http.get("http://finance.yahoo.com/webservice/v1/symbols/YHOO/quote?format=json&view=detail")
-        //  .then(function(jsonData){
-        //    console.log(jsonData.data.list.resources[0].resource.fields);
-        //
-        //  });
+      function ($scope, $stateParams, stockDataService) {
 
 
         $scope.ticker = $stateParams.stockTicker;
+        $scope.$on("$ionicView.afterEnter", function () {
+          getPriceData();
+          getDetailsData();
+        });
+        function getPriceData() {
+          var promise = stockDataService.getPriceData($scope.ticker);
 
-        var promise = stockDataService.getPriceData($scope.ticker);
-    promise.then(function(data){
-      console.log(data)
+          promise.then(function (data){
+            console.log(data);
 
-    })
+          });
+        }
+        function getDetailsData() {
+          var promise = stockDataService.getDetailsData($scope.ticker);
+
+          promise.then(function(data) {
+            console.log(data);
 
 
+          });
+        }
 
-        ////  Yahoo YQL Query — http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo/*.finance.quotes%20where%20symbol%20IN%20(%22YHOO%22)&format=json&env=http://datatables.org/alltables.env
-        //Yahoo Static Charts Query — http://chart.finance.yahoo.com/z?s=YHOO&t=1d&q=l&l=on&z=m&a=vm*/
       }]);
