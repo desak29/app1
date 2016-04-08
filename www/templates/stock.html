@@ -21,11 +21,11 @@
 
   <ion-content class="has-subheader">
     <div class="button-bar">
-      <a ng-click="chartViewFunc(1)" class="bar">Day</a>
-      <a ng-click="chartViewFunc(2)" class="bar">Week</a>
-      <a ng-click="chartViewFunc(3)" class="bar">3m</a>
-      <a ng-click="chartViewFunc(4)" class="bar">Year</a>
-      <a ng-click="chartViewFunc(5)" class="bar">Max</a>
+      <a ng-click="chartViewFunc(1)" ng-class="chartView == 1 ? 'active' : ''" class="button">Day</a>
+      <a ng-click="chartViewFunc(2)" ng-class="chartView == 2 ? 'active' : ''" class="button">Week</a>
+      <a ng-click="chartViewFunc(3)" ng-class="chartView == 3 ? 'active' : ''" class="button">3m</a>
+      <a ng-click="chartViewFunc(4)" ng-class="chartView == 4 ? 'active' : ''" class="button">Year</a>
+      <a ng-click="chartViewFunc(5)" ng-class="chartView == 5 ? 'active' : ''" class="button">Max</a>
     </div>
     <img ng-if="chartView == 1" ng-src="http://chart.finance.yahoo.com/z?s={{ticker}}&t=1d&q=l&l=on&z=m&a=vm" style="width:100%;">
     <img ng-if="chartView == 2" ng-src="http://chart.finance.yahoo.com/z?s={{ticker}}&t=5d&q=l&l=on&z=m&a=vm" style="width:100%;">

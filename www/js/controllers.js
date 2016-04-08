@@ -73,6 +73,10 @@ angular.module('app1.controllers', [
           getPriceData();
           getDetailsData();
         });
+        $scope.chartViewFunc = function(n){
+          $scope.chartView = n;
+        }
+
         function getPriceData() {
           var promise = stockDataService.getPriceData($scope.ticker);
 
