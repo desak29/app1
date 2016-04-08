@@ -61,13 +61,14 @@ angular.module('app1.controllers', [
     }])
 
   .controller('StockCtrl',
-    ['$scope', '$stateParams', 'stockDataService',
-      function ($scope, $stateParams, stockDataService) {
+    ['$scope', '$stateParams', 'stockDataService','dateService',
+      function ($scope, $stateParams, stockDataService, dateService) {
 
 
         $scope.ticker = $stateParams.stockTicker;
         $scope.chartView =1;
-
+console.log(dateService.currentDate());
+        console.log(dateService.oneYearAgeDate());
 
         $scope.$on("$ionicView.afterEnter", function () {
           getPriceData();
