@@ -1,3 +1,71 @@
+/*Market Data Card*/
+#market-data-card{
+  font-size: 3.25vmin;
+
+}
+#market-data-card .col-20{
+  font-weight:bolder;
+}
+#market-data-card .col-20:last-of-type{
+  text-align:right;
+}
+#market-data-card .last-trade {
+  font-size:3vmin;
+  float:right;
+}
+/*stock NavBar Styles*/
+#stock-navbar ion-header-bar{
+  border:none;
+}
+#stock-navbar .back-text{
+  font-size:11pt;
+}
+/*Stock subheader bar */
+#stock-subheader-bar{
+  border-top:none;
+
+}
+#stock-subheader-bar.name{
+  color:#333;
+  float:left;
+  font-size:3.5vmin;
+  /*breaks tablet*/
+  font-weight:normal;
+  margin: auto 0;
+  max-width: 33vw;
+  overflow:hidden;
+  text-align:left;
+  text-overflow: ellipsis;
+
+}
+#stock-price{
+  font-size:7vmin;
+  line-height: 32pt;
+  /*breaks tablet*/
+}
+#stock-change{
+  font-size:4vmin;
+  font-weight:bolder;
+  float:right;
+  line-height:12pt;
+  margin:auto 0;
+  /*breaks tablet*/
+}
+/* Short Button Bar */
+#short-button-bar .button{
+  line-height:normal;
+  min-height:10px;
+  border:none;
+  border-radius:0;
+  font-size:9pt;
+  background-color:#fff;
+}
+#short-button-bar .button.active{
+  font-weight: bold;
+}
+#short-button-bar{
+  -webkit-box-shadow: 0px 0px 0px 1px #ddd;
+}
 /* Chart Styles */
 
 #interactiveChart{
@@ -86,6 +154,15 @@ fill: #1e88e5;
   stroke:#ccc;
 
 }
+/*helper styles*/
+.display-flex {
+  display: flex !important;
+}
+.no-margin{
+  margin: 0px !important;
+
+}
+
 /*Adjustment Styles */
 svg text{
   font: 400 10pt "Helvetica Neue", sans-serif  !important;
