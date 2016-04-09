@@ -32,9 +32,16 @@ angular.module('app1.filters', [])
         break;
       }
     }
+      if(number >= 1000) {
+        return abs + key;
+      }
+        else if(number <= -1000){
+        return '-' + abs + key;
 
-    return $filter('number')(((isNegative ? '-' : '') + abs + key), 3);
-  };
+      }else {
+        return $filter('number')(((isNegative ? '-' : '') + abs + key), 3);
+      }
+    };
 });
 
 
