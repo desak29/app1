@@ -1,1 +1,93 @@
-/* Empty. Add your own CSS if you like */
+/* Chart Styles */
+
+#interactiveChart{
+  height: 80vmin;
+  /*1 vmin is 1 percent of the screen so 80 means 80%*/
+}
+.nv-focus .nv-barsWrap,
+.nv-focus .nv-y1 .tick,
+.nv-focus .nv-y1 .nv-axisMaxMin,
+.nv-focus .nv-y1 .domain,
+.nv-context .nv-x .nv-axisMaxMin,
+.nv-context .nv-y2 .domain ,
+.nv-context .nv-y2 .nv-axisMaxMin,
+.nv-context .nv-y2 .tick{
+  display:none;
+  !important;
+}
+.nv-focus .nv-x .tick:first-of-type text,
+#interactiveChart text.nv-axislabel{
+  text-anchor:start !important;
+
+}
+.nv-focus .nv-y2 .tick text,
+.nv-focus .nv-y2 .nv-axisMaxMin text,
+.nv-focus .nv-x .tick:last-of-type text,
+.nv-context .nv-y1 .tick text,
+.nv-context .nv-y1 .nv-axisMaxMin text{
+  text-anchor: end !important;
+}
+#interactiveChart svg text{
+  font-size: 3vmin !important;
+}
+#interactiveChart .nv-axis line {
+  stroke-dasharray:3,3;
+  stroke:#ddd;
+}
+#interactiveChart .nv-axis path.domain{
+  stroke-dasharray: 4,4;
+  stroke-opactiy:.5;
+  stroke-width:1px;
+
+}
+#interactiveChart .nv-focus .domain{
+  stroke: #1e88e5;
+}
+#interactiveChart .nv-focus .nv-axislabel,
+#interactiveChart .nv-focus .nv-axisMaxMin text {
+fill: #1e88e5;
+}
+
+#interactiveChart .nv-context .domain {
+  stroke: #ff9800;
+
+}
+#interactiveChart .nv-context .nv-axislabel,
+#interactiveChart .nv-context .nv-axisMaxMin text{
+  fill: #ff9800;
+}
+#interactiveChart .nv-focus .nv-y2 .tick text,
+#interactiveChart .nv-context .nv-y1 .tick text {
+  fill: #ccc;
+}
+#interactiveChart .nv-focus .nv-line{
+  stroke: #6c3;
+  stroke-width: 2px;
+
+}
+#interactiveChart .nv-context .nv-line{
+  stroke: #aaa;
+  stroke-opacity: .75;
+  stroke-width: 1px;
+}
+
+#interactiveChart .nv-line{
+  strokeplinecap: round;
+  stroke-linejoin: round;
+}
+#interactiveChart .nv-barsWrap rect{
+  fill:#ff9800;
+  fill-opacity:1;
+  shape-rendering:crispEdges;
+}
+#interactiveChart .nv-brushBackground rect{
+  shape-rendering:crispEdges;
+  stroke-width:1;
+  stroke:#ccc;
+
+}
+/*Adjustment Styles */
+svg text{
+  font: 400 10pt "Helvetica Neue", sans-serif  !important;
+  /*no id selector so add important */
+}

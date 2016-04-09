@@ -53,7 +53,7 @@ angular.module('app1.controllers', [])
       {ticker: "FB"},
       {ticker: "NFLX"},
       {ticker: "TSLA"},
-      {ticker: "BRK-A"},
+      {ticker: "BRKA"},
       {ticker: "INTC"},
       {ticker: "MSFT"},
       {ticker: "GE"},
@@ -166,7 +166,7 @@ angular.module('app1.controllers', [])
   	$scope.chartOptions = {
       chartType: 'linePlusBarWithFocusChart',
       data: 'myData',
-      margin: {top: 15, right: 40, bottom: marginBottom, left: 70},
+      margin: {top: 15, right: 19, bottom: marginBottom, left: 19},
       interpolate: "cardinal",
       useInteractiveGuideline: false,
       yShowMaxMin: false,
@@ -181,7 +181,10 @@ angular.module('app1.controllers', [])
       y2AxisTickFormat: y2TickFormat,
       y3AxisTickFormat: y3TickFormat,
       y4AxisTickFormat: y4TickFormat,
-      transitionDuration: 500
+      transitionDuration: 500,
+      y1AxisLabel: 'Price',
+      y3AxisLabel: 'Volume',
+      noData: 'Dynamic Data Loading...'
   	};
 
 }])
