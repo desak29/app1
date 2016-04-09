@@ -59,7 +59,8 @@ angular.module('app1.controllers', [])
       {ticker: "GE"},
       {ticker: "BAC"},
       {ticker: "C"},
-      {ticker: "T"}
+      {ticker: "T"},
+      {ticker: "A"}
     ];
 
 }])
