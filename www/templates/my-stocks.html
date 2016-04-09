@@ -2,14 +2,12 @@
   <ion-content>
     <ion-list>
       <ion-item ng-repeat="stock in myStocksArray track by stock.ticker" ng-href="#/app/{{stock.ticker}}">
-
         <div class="row row-center">
-        <div class="col">
-          <h3>{{stock.ticker}}</h3>
-        </div>
+          <div class="col">
+            <h3>{{stock.ticker}}</h3>
           </div>
+        </div>
       </ion-item>
     </ion-list>
   </ion-content>
-  <!--ion items directives allow full tranafer to the system -->
 </ion-view>
