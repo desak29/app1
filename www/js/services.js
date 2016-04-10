@@ -74,6 +74,24 @@ angular.module('app1.services', [])
 
 
 
+  .factory('notesCacheService',function(CacheFactory){
+  var notesCache;
+  if(!CacheFactory.get('notesCache')) {
+    notesCache = CacheFactory('notesCache',{
+      storageMode: 'localStorage'
+    });
+  }else{
+    notesCache = CacheFactory.get('notesCache');
+  }
+  return notesCache;
+})
+
+
+
+
+
+
+
   .factory('stockDataService', function($q, $http, encodeURIService, stockDetailsCacheService) {
 
     var getDetailsData = function(ticker) {
@@ -195,8 +213,22 @@ angular.module('app1.services', [])
       getHistoricalData: getHistoricalData
     };
   })
+  .factory('notesService', function(){
+    return{
+      getNotes: function(){
 
-;
+      },
+
+      addNote: function(){
+
+      },
+      deleteNote: function(){
+
+      };
+
+    }
+  })
+
 
 
 
