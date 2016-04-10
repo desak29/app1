@@ -1,3 +1,23 @@
+/*Notes Data Card*/
+#stock-notes .add-stock-notes {
+  border: 1px solid #6c3;
+  border-radius: 10px;
+  color:#ff9800;
+  float:right;
+  font-size:11pt;
+  font-weight: 300;
+  padding:0 13px;
+}
+#stock-note-title{
+  border-bottom: 1px solid #eee;
+  padding: 0 5px;
+}
+
+#stock-note-body{
+  min-height:160px;
+  padding:10px 5px 5px;
+}
+
 /*Market Data Card*/
 #market-data-card{
   font-size: 3.25vmin;
