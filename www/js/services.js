@@ -222,7 +222,15 @@ angular.module('app1.services', [])
       },
 
       addNote: function(ticker, note){
-        notesCacheService.put(ticker, note);
+        var stockNotes = [];
+        if(notesCacheService.get(ticker)){
+          stockNotes = notesCacheService.get(ticker);
+          stockNotes.push(note);
+        }
+        else{
+          stockNotes.push(note);
+        }
+        notesCacheService.put(ticker, stockNotes);
 
       },
       deleteNote: function(){

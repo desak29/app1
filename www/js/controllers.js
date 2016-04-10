@@ -74,15 +74,18 @@ angular.module('app1.controllers', [])
 
     $scope.oneYearAgoDate = dateService.oneYearAgoDate();
     $scope.todayDate = dateService.currentDate();
+    $scope.stockNotes = [];
 
     // default chart setting
     $scope.chartView = 4;
+
 
 
     $scope.$on("$ionicView.afterEnter", function() {
       getPriceData();
       getDetailsData();
       getChartData();
+      $scope.stockNotes = notesService.getNotes($scope.ticker);
     });
 
     $scope.chartViewFunc = function(n) {
@@ -110,14 +113,14 @@ angular.module('app1.controllers', [])
             type: 'button-balanced',
             onTap: function(e) {
               notesService.addNote($scope.ticker, $scope.note);
-              console.log("save: ", $scope.note);
+
             }
           }
         ]
       });
 
       note.then(function(res) {
-        console.log('Tapped!', res);
+
       });
 
 
