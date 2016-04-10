@@ -3,6 +3,7 @@ angular.module('app1', [
   'angular-cache',
   'nvd3',
   'nvChart',
+  'cb.x2js',
   'app1.controllers',
   'app1.services',
   'app1.filters',

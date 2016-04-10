@@ -107,8 +107,10 @@
 
     <div class="card">
       <div class="item item-divider">News</div>
-      <a class="item item-icon-right">
-        <h2>News Story Title</h2>
+      <a class="item item-icon-right" ng-repeat="story in newsStories" ng-click="openWindow(story.link)">
+        <h2>{{story.title}}</h2>
+        <h6>{{story.pubDate}}</h6>
+        <p>{{story.description}}</p>
         <i class="icon ion-ios-arrow-right"></i>
       </a>
     </div>

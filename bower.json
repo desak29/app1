@@ -5,6 +5,10 @@
     "ionic": "driftyco/ionic-bower#1.2.4"
   },
   "dependencies": {
-    "angular-cache": "^4.5.0"
+    "angular-cache": "^4.5.0",
+    "angular-x2js": "^0.2.0"
+  },
+  "resolutions": {
+    "angular": "1.4.3"
   }
 }

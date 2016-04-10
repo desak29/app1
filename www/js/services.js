@@ -1,25 +1,24 @@
 angular.module('app1.services', [])
 
 
-  .factory('encodeURIService', function() {
+  .factory('encodeURIService', function () {
     return {
-      encode: function(string) {
+      encode: function (string) {
         return encodeURIComponent(string).replace(/\"/g, "%22").replace(/\ /g, "%20").replace(/[!'()]/g, escape);
       }
     };
   })
 
 
+  .factory('dateService', function ($filter) {
 
-  .factory('dateService', function($filter) {
-
-    var currentDate = function() {
+    var currentDate = function () {
       var d = new Date();
       var date = $filter('date')(d, 'yyyy-MM-dd');
       return date;
     };
 
-    var oneYearAgoDate = function() {
+    var oneYearAgoDate = function () {
       var d = new Date(new Date().setDate(new Date().getDate() - 365));
       var date = $filter('date')(d, 'yyyy-MM-dd');
       return date;
@@ -32,12 +31,11 @@ angular.module('app1.services', [])
   })
 
 
-
-  .factory('chartDataCacheService', function(CacheFactory) {
+  .factory('chartDataCacheService', function (CacheFactory) {
 
     var chartDataCache;
 
-    if(!CacheFactory.get('chartDataCache')) {
+    if (!CacheFactory.get('chartDataCache')) {
 
       chartDataCache = CacheFactory('chartDataCache', {
         maxAge: 60 * 60 * 8 * 1000,
@@ -53,12 +51,11 @@ angular.module('app1.services', [])
   })
 
 
-
-  .factory('stockDetailsCacheService', function(CacheFactory) {
+  .factory('stockDetailsCacheService', function (CacheFactory) {
 
     var stockDetailsCache;
 
-    if(!CacheFactory.get('stockDetailsCache')) {
+    if (!CacheFactory.get('stockDetailsCache')) {
       stockDetailsCache = CacheFactory('stockDetailsCache', {
         maxAge: 60 * 1000,
         deleteOnExpire: 'aggressive',
@@ -73,28 +70,22 @@ angular.module('app1.services', [])
   })
 
 
-
-  .factory('notesCacheService',function(CacheFactory){
-  var notesCache;
-  if(!CacheFactory.get('notesCache')) {
-    notesCache = CacheFactory('notesCache',{
-      storageMode: 'localStorage'
-    });
-  }else{
-    notesCache = CacheFactory.get('notesCache');
-  }
-  return notesCache;
-})
-
+  .factory('notesCacheService', function (CacheFactory) {
+    var notesCache;
+    if (!CacheFactory.get('notesCache')) {
+      notesCache = CacheFactory('notesCache', {
+        storageMode: 'localStorage'
+      });
+    } else {
+      notesCache = CacheFactory.get('notesCache');
+    }
+    return notesCache;
+  })
 
 
+  .factory('stockDataService', function ($q, $http, encodeURIService, stockDetailsCacheService) {
 
-
-
-
-  .factory('stockDataService', function($q, $http, encodeURIService, stockDetailsCacheService) {
-
-    var getDetailsData = function(ticker) {
+    var getDetailsData = function (ticker) {
 
       var deferred = $q.defer(),
 
@@ -104,17 +95,17 @@ angular.module('app1.services', [])
         query = 'select * from yahoo.finance.quotes where symbol IN ("' + ticker + '")',
         url = 'http://query.yahooapis.com/v1/public/yql?q=' + encodeURIService.encode(query) + '&format=json&env=http://datatables.org/alltables.env';
 
-      if(stockDetailsCache) {
+      if (stockDetailsCache) {
         deferred.resolve(stockDetailsCache);
       }
       else {
         $http.get(url)
-          .success(function(json) {
+          .success(function (json) {
             var jsonData = json.query.results.quote;
             deferred.resolve(jsonData);
             stockDetailsCacheService.put(cacheKey, jsonData);
           })
-          .error(function(error) {
+          .error(function (error) {
             console.log("Details data error: " + error);
             deferred.reject();
           });
@@ -123,17 +114,17 @@ angular.module('app1.services', [])
       return deferred.promise;
     };
 
-    var getPriceData = function(ticker) {
+    var getPriceData = function (ticker) {
 
       var deferred = $q.defer(),
         url = "http://finance.yahoo.com/webservice/v1/symbols/" + ticker + "/quote?format=json&view=detail";
 
       $http.get(url)
-        .success(function(json) {
+        .success(function (json) {
           var jsonData = json.list.resources[0].resource.fields;
           deferred.resolve(jsonData);
         })
-        .error(function(error) {
+        .error(function (error) {
           console.log("Price data error: " + error);
           deferred.reject();
         });
@@ -148,10 +139,9 @@ angular.module('app1.services', [])
   })
 
 
+  .factory('chartDataService', function ($q, $http, encodeURIService, chartDataCacheService) {
 
-  .factory('chartDataService', function($q, $http, encodeURIService, chartDataCacheService) {
-
-    var getHistoricalData = function(ticker, fromDate, todayDate) {
+    var getHistoricalData = function (ticker, fromDate, todayDate) {
 
       var deferred = $q.defer(),
 
@@ -161,18 +151,18 @@ angular.module('app1.services', [])
         query = 'select * from yahoo.finance.historicaldata where symbol = "' + ticker + '" and startDate = "' + fromDate + '" and endDate = "' + todayDate + '"';
       url = 'http://query.yahooapis.com/v1/public/yql?q=' + encodeURIService.encode(query) + '&format=json&env=http://datatables.org/alltables.env';
 
-      if(chartDataCache) {
+      if (chartDataCache) {
         deferred.resolve(chartDataCache);
       }
       else {
         $http.get(url)
-          .success(function(json) {
+          .success(function (json) {
             var jsonData = json.query.results.quote;
 
             var priceData = [],
               volumeData = [];
 
-            jsonData.forEach(function(dayDataObject) {
+            jsonData.forEach(function (dayDataObject) {
 
               var dateToMillis = dayDataObject.Date,
                 date = Date.parse(dateToMillis),
@@ -200,7 +190,7 @@ angular.module('app1.services', [])
             deferred.resolve(formattedChartData);
             chartDataCacheService.put(cacheKey, formattedChartData);
           })
-          .error(function(error) {
+          .error(function (error) {
             console.log("Chart data error: " + error);
             deferred.reject();
           });
@@ -214,33 +204,58 @@ angular.module('app1.services', [])
     };
   })
 
-  .factory('notesService', function(notesCacheService){
-    return{
-      getNotes: function(ticker){
+  .factory('notesService', function (notesCacheService) {
+    return {
+      getNotes: function (ticker) {
         return notesCacheService.get(ticker);
 
       },
 
-      addNote: function(ticker, note){
+      addNote: function (ticker, note) {
         var stockNotes = [];
-        if(notesCacheService.get(ticker)){
+        if (notesCacheService.get(ticker)) {
           stockNotes = notesCacheService.get(ticker);
           stockNotes.push(note);
         }
-        else{
+        else {
           stockNotes.push(note);
         }
         notesCacheService.put(ticker, stockNotes);
 
       },
-      deleteNote: function(ticker, index){
+      deleteNote: function (ticker, index) {
         var stockNotes = [];
         stockNotes = notesCacheService.get(ticker);
-        stockNotes.splice(index,1);
+        stockNotes.splice(index, 1);
         notesCacheService.put(ticker, stockNotes);
       }
 
     }
+  })
+
+  .factory('newsService', function ($q, $http) {
+
+    return {
+      getNews: function (ticker) {
+        var deferred = $q.defer(),
+          x2js = new X2JS(),
+          url = "http://finance.yaho.com/rss/headline?s=" + ticker;
+console.log(url);
+        $http.get(url)
+          .success(function (xml) {
+            var xmlDoc = x2js.parseXmlString(xml),
+              json = x2js.xml2json(xmlDoc),
+              jsonData = json.rss.channel.item;
+            deferred.resolve(jsonData);
+          })
+          .error(function (error) {
+            deferred.reject();
+            console.log("News error:" + error);
+          });
+        return deferred.promise;
+
+      }
+    };
   })
 
 

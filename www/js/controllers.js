@@ -67,8 +67,8 @@ angular.module('app1.controllers', [])
 
 
 
-.controller('StockCtrl', ['$scope', '$stateParams', '$window', '$ionicPopup','stockDataService', 'chartDataService', 'dateService','notesService',
-  function($scope, $stateParams, $window, $ionicPopup, stockDataService, chartDataService, dateService, notesService) {
+.controller('StockCtrl', ['$scope', '$stateParams', '$window', '$ionicPopup','stockDataService', 'chartDataService', 'dateService','notesService','newsService',
+  function($scope, $stateParams, $window, $ionicPopup, stockDataService, chartDataService, dateService, notesService, newsService) {
 
     $scope.ticker = $stateParams.stockTicker;
 
@@ -85,8 +85,15 @@ angular.module('app1.controllers', [])
       getPriceData();
       getDetailsData();
       getChartData();
+      getNews();
       $scope.stockNotes = notesService.getNotes($scope.ticker);
+
     });
+
+    $scope.openWindow = function(link){
+    // to do: install and setup inappBrowser
+      console.log("openWindow-> setup inapp browser")
+    };
 
     $scope.chartViewFunc = function(n) {
       $scope.chartView = n;
@@ -169,7 +176,14 @@ angular.module('app1.controllers', [])
 
     };
 
+      function getNews(){
+        $scope.newsStories = [];
 
+        var promise = newsService.getNews($scope.ticker);
+        promise.then(function(data) {
+          $scope.newsStories = data;
+        })
+      }
 
 
     function getPriceData() {
