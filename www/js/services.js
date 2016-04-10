@@ -213,18 +213,21 @@ angular.module('app1.services', [])
       getHistoricalData: getHistoricalData
     };
   })
-  .factory('notesService', function(){
+
+  .factory('notesService', function(notesCacheService){
     return{
-      getNotes: function(){
+      getNotes: function(ticker){
+        return notesCacheService.get(ticker);
 
       },
 
-      addNote: function(){
+      addNote: function(ticker, note){
+        notesCacheService.put(ticker, note);
 
       },
       deleteNote: function(){
 
-      };
+      }
 
     }
   })
