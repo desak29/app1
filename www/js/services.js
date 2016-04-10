@@ -233,8 +233,11 @@ angular.module('app1.services', [])
         notesCacheService.put(ticker, stockNotes);
 
       },
-      deleteNote: function(){
-
+      deleteNote: function(ticker, index){
+        var stockNotes = [];
+        stockNotes = notesCacheService.get(ticker);
+        stockNotes.splice(index,1);
+        notesCacheService.put(ticker, stockNotes);
       }
 
     }
