@@ -55,13 +55,14 @@ angular.module('app1.controllers', [])
 
 
 
-.controller('StockCtrl', ['$scope', '$stateParams', '$window', '$ionicPopup','stockDataService', 'chartDataService', 'dateService','notesService','newsService',
-  function($scope, $stateParams, $window, $ionicPopup, stockDataService, chartDataService, dateService, notesService, newsService) {
+.controller('StockCtrl', ['$scope', '$stateParams', '$window', '$ionicPopup','followStockService','stockDataService', 'chartDataService', 'dateService','notesService','newsService',
+  function($scope, $stateParams, $window, $ionicPopup, followStockService, stockDataService, chartDataService, dateService, notesService, newsService) {
 
     $scope.ticker = $stateParams.stockTicker;
 
     $scope.oneYearAgoDate = dateService.oneYearAgoDate();
     $scope.todayDate = dateService.currentDate();
+    $scope.following = followStockService.checkFollowing($scope.ticker);
     $scope.stockNotes = [];
 
     // default chart setting
@@ -77,6 +78,16 @@ angular.module('app1.controllers', [])
       $scope.stockNotes = notesService.getNotes($scope.ticker);
 
     });
+
+    $scope.toggleFollow = function(){
+      if($scope.following){
+        followStockService.unfollow($scope.ticker);
+        $scope.following = false;
+      }else{
+      followStockService.follow($scope.ticker);
+        $scope.following = true;
+      }
+    };
 
     $scope.openWindow = function(link){
     // to do: install and setup inappBrowser
@@ -181,10 +192,10 @@ angular.module('app1.controllers', [])
       promise.then(function(data) {
         $scope.stockPriceData = data;
         if(data.chg_percent >= 0 && data !== null){
-          $scope.reactiveColor = {'background-color': '#33cd5f'};
+          $scope.reactiveColor = {'background-color': '#33cd5f', 'border-color':'rgba(255,255,255,.3)'};
         }
         else if(data.chg_percent < 0  && data !== null){
-          $scope.reactiveColor = {'background-color': '#ef473a'};
+          $scope.reactiveColor = {'background-color': '#ef473a', 'border-color':'rgba(0,0,0,.2)'};
 
         }
       });
