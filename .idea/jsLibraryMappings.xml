@@ -3,5 +3,6 @@
   <component name="JavaScriptLibraryMappings">
     <file url="file://$PROJECT_DIR$" libraries="{app1 node_modules}" />
     <file url="file://$PROJECT_DIR$/www/js/services.js" libraries="{ECMAScript 6}" />
+    <file url="file://$PROJECT_DIR$/www/templates/search.html" libraries="{ECMAScript 6}" />
   </component>
 </project>
