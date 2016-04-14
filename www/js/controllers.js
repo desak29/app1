@@ -44,24 +44,12 @@ angular.module('app1.controllers', [])
 
 
 
-.controller('MyStocksCtrl', ['$scope',
-  function($scope) {
+.controller('MyStocksCtrl', ['$scope','myStocksArrayService',
+  function($scope, myStocksArrayService) {
 
-    $scope.myStocksArray = [
-      {ticker: "AAPL"},
-      {ticker: "GPRO"},
-      {ticker: "FB"},
-      {ticker: "NFLX"},
-      {ticker: "TSLA"},
-      {ticker: "BRKA"},
-      {ticker: "INTC"},
-      {ticker: "MSFT"},
-      {ticker: "GE"},
-      {ticker: "BAC"},
-      {ticker: "C"},
-      {ticker: "T"},
-      {ticker: "A"}
-    ];
+    $scope.myStocksArray = myStocksArrayService;
+
+    console.log(myStocksArrayService);
 
 }])
 
