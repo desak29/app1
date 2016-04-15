@@ -24,16 +24,20 @@ angular.module('app1.services', [])
       }
    else if(id ==2){
         $ionicModal.fromTemplateUrl('templates/login.html', {
-          scope: $scope
+          scope: null,
+          controller:'LoginSearchCtrl'
         }).then(function(modal) {
-          $scope.modal = modal;
+          _this.modal = modal;
+          _this.modal.show();
         });
       }
      else if (id == 3 ){
         $ionicModal.fromTemplateUrl('templates/login.html', {
-          scope: $scope
+          scope: null,
+          controller:'LoginSearchCtrl'
         }).then(function(modal) {
-          $scope.modal = modal;
+          _this.modal = modal;
+          _this.modal.show()
         });
       }
 

@@ -21,11 +21,17 @@
         <ion-item menu-close ui-sref="app.myStocks">
           My Stocks
         </ion-item>
-        <ion-item menu-close ng-click="login()">
-          Login
+        <ion-item menu-close ng-click="modalService.openModal(2)">
+          <!--call modal services ope modal service-->
+          Log In
         </ion-item>
+        <ion-item menu-close ng-click="modalService.openModal(3)">
+          <!--call modal services ope modal service-->
+          Sign Up
+        </ion-item>
+
         <ion-item menu-close ng-click="modalService.openModal(1)">
-           <!--call modal services ope modal service-->
+
          Search
         </ion-item>
       </ion-list>
