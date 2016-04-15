@@ -276,7 +276,6 @@ return false;
         $http.get(url)
           .success(function (json) {
             var jsonData = json.query.results.quote;
-
             var priceData = [],
               volumeData = [];
 
@@ -375,6 +374,37 @@ return false;
       }
     };
   })
+
+  .factory('searchService', function($q, $http) {
+
+    return {
+
+      search: function(query) {
+
+        var deferred = $q.defer(),
+
+          url = 'https://s.yimg.com/aq/autoc?query=' + query +'&region=US&lang=en-US&callback=YAHOO.Finance.SymbolSuggest.ssCallback';
+
+        YAHOO = window.YAHOO = {
+          Finance: {
+            SymbolSuggest: {}
+          }
+        };
+
+        YAHOO.Finance.SymbolSuggest.ssCallback = function(data) {
+          var jsonData = data.ResultSet.Result;
+          deferred.resolve(jsonData);
+        };
+
+        $http.jsonp(url)
+          .then(YAHOO.Finance.SymbolSuggest.ssCallback);
+
+        return deferred.promise;
+      }
+    };
+  })
+
+;
 
 
 

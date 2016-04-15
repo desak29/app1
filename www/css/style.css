@@ -1,3 +1,15 @@
+/*Search Styles*/
+
+#search{
+  background-color:rgba(20,20,20,.975);
+}
+#search .search-input{
+  background-color:rgba(255,255,255,.1);
+}
+#search input{
+  color: #ffffff;
+
+}
 /*News Data card*/
 #stock-news .icon{
   color:#ccc;
@@ -201,6 +213,28 @@ fill: #1e88e5;
 }
 .no-margin{
   margin: 0 !important;
+
+}
+.font-normal{
+  font-weight: normal !important;
+}
+.border-none{
+  border:none !important;
+
+}
+.margin-auto,
+.margin-auto svg{
+  margin:auto !important;
+
+}
+.text-align-center{
+  text-align:center !important;
+}
+.text-uppercase{
+  text-transform:uppercase !important;
+}
+.text-capitalize{
+  text-transform: capitalize !important;
 
 }
 
